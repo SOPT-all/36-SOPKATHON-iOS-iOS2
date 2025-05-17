@@ -38,7 +38,7 @@ class ReservationListTableViewCell: UITableViewCell, ReuseIdentifiable {
     }
 
     private let dateAndTimeLabel = UILabel().then {
-        $0.attributedText = .pretendard(.label_r_12, text: "2025.05.18/ 00:00")
+        $0.attributedText = .pretendard(.label_r_12, text: "2025.05.18 / 00:00")
         $0.textColor = .lightGray
     }
 
@@ -94,4 +94,28 @@ class ReservationListTableViewCell: UITableViewCell, ReuseIdentifiable {
 
        
     }
+    
+    func configure(with dateString: String) {
+        dateAndTimeLabel.attributedText = .pretendard(.label_r_12, text: dateString)
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd / HH:mm"
+        formatter.locale = Locale(identifier: "ko_KR")
+
+        guard let reservationDate = formatter.date(from: dateString) else {
+            // 파싱 실패 시 기본 회색 유지
+            dateAndTimeLabel.textColor = .lightGray
+            return
+        }
+
+        let now = Date()
+        if reservationDate > now {
+            // 아직 안 지난 예약 → 파란색
+            dateAndTimeLabel.textColor = .blue
+        } else {
+            // 지난 예약 → 회색
+            dateAndTimeLabel.textColor = .lightGray
+        }
+    }
+
 }
