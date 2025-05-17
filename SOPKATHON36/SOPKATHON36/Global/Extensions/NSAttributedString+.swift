@@ -28,13 +28,15 @@ extension NSAttributedString {
 
 
         let lineHeightMultiple = lineHeight / font.lineHeight
+        let baselineOffset = (lineHeight - font.lineHeight)
         paragraph.lineHeightMultiple = lineHeightMultiple
         paragraph.alignment = .natural
 
         return NSAttributedString(string: text, attributes: [
             .font: font,
             .kern: kern,
-            .paragraphStyle: paragraph
+            .paragraphStyle: paragraph,
+            .baselineOffset: baselineOffset
         ])
     }
 }
