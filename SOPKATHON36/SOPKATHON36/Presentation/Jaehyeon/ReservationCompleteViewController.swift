@@ -10,25 +10,57 @@ import UIKit
 class ReservationCompleteViewController: UIViewController {
     
     private let logoImageView = UIImageView().then {
-        $0.image = UIImage(systemName: "pencil")
+        $0.image = UIImage(named: "logo_success")
         $0.contentMode = .scaleAspectFit
     }
+    
+    private let onedayLabel = UIButton().then {
+        $0.setTitle("원데이 클래스 이름", for: .normal)
+        $0.titleLabel?.font = .pretendard(size: 14)
+        $0.setTitleColor(.white, for: .normal)
+        $0.backgroundColor = .brand1
+        $0.setCornerRadius(12)
+        }
+
     
     private let titleLabel = UILabel().then {
             $0.attributedText = .pretendard(.title_b_24, text: "예약이 완료되었습니다!")
         }
     
-    private let materialLabel = UILabel().then {
-        $0.attributedText = .pretendard(.title_m_16, text: "반지")
-        $0.backgroundColor = .lightGray
+//    private let materialLabel = UILabel().then {
+//        $0.attributedText = .pretendard(.title_m_16, text: "반지")
+//        $0.backgroundColor = .lightGray
+//        }
+    
+    private let numberPeople = UIButton().then {
+        $0.setTitle("1명", for: .normal)
+        $0.titleLabel?.font = .pretendard(size: 14)
+        $0.setTitleColor(.grayScale600, for: .normal)
+        $0.backgroundColor = .grayScale200
+        $0.setCornerRadius(4)
+        $0.contentEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
         }
     
-    private let numberPeople = UILabel().then {
-            $0.attributedText = .pretendard(.title_m_16, text: "1명")
+    
+    private let dateLabel = UIButton().then {
+        $0.setTitle("2025년 12월 18일", for: .normal)
+        $0.titleLabel?.font = .pretendard(size: 14)
+        $0.setTitleColor(.grayScale600, for: .normal)
+        $0.backgroundColor = .grayScale200
+        $0.setCornerRadius(4)
+        $0.contentEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
         }
-    private let dateLabel = UILabel().then {
-            $0.attributedText = .pretendard(.title_m_16, text: "2025년 5월 30일")
+    
+    private let timeLabel = UIButton().then {
+        $0.setTitle("04시 52분", for: .normal)
+        $0.titleLabel?.font = .pretendard(size: 14)
+        $0.setTitleColor(.grayScale600, for: .normal)
+        $0.backgroundColor = .grayScale200
+        $0.setCornerRadius(4)
+        $0.contentEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
         }
+    
+    
     
     private let returnButton = UIButton().then {
         $0.setTitle("홈으로 돌아가기", for: .normal)
@@ -46,33 +78,42 @@ class ReservationCompleteViewController: UIViewController {
     }
     
     private func setupUI() {
-        self.view.addSubviews(logoImageView,titleLabel,materialLabel,numberPeople,dateLabel,returnButton)
+        self.view.addSubviews(logoImageView,onedayLabel,titleLabel,numberPeople,dateLabel,timeLabel,returnButton)
         
         logoImageView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(50)
-            $0.size.equalTo(226)
-            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().offset(20)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(374)
+     
         
         }
         
-        titleLabel.snp.makeConstraints {
+        onedayLabel.snp.makeConstraints {
             $0.top.equalTo(logoImageView.snp.bottom).offset(16)
             $0.centerX.equalTo(logoImageView.snp.centerX)
-        }
-        
-        materialLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(12)
-            $0.centerX.equalTo(titleLabel.snp.centerX)
+            $0.width.equalTo(127)
+            $0.height.equalTo(28)
             
         }
         
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(onedayLabel.snp.bottom).offset(16)
+            $0.centerX.equalTo(logoImageView.snp.centerX)
+        }
+        
+
         numberPeople.snp.makeConstraints {
-            $0.top.equalTo(materialLabel.snp.bottom).offset(12)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(12)
             $0.centerX.equalTo(titleLabel.snp.centerX)
         }
         
         dateLabel.snp.makeConstraints {
-            $0.top.equalTo(numberPeople.snp.bottom).offset(2)
+            $0.top.equalTo(numberPeople.snp.bottom).offset(8)
+            $0.centerX.equalTo(titleLabel.snp.centerX)
+        }
+        
+        timeLabel.snp.makeConstraints {
+            $0.top.equalTo(dateLabel.snp.bottom).offset(8)
             $0.centerX.equalTo(titleLabel.snp.centerX)
         }
         
