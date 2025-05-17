@@ -28,3 +28,7 @@
 ## 👍🏻 우리들의 사진
 ### Before
 <img src="https://github.com/user-attachments/assets/854b5def-ef7e-4e3c-ae39-737c4c08d616" width="500">
+
+### After
+<img src="https://github.com/user-attachments/assets/6366d001-066f-41d1-bce2-49aa89f51dea" width="500">
+
