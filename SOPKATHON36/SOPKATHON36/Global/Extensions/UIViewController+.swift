@@ -23,3 +23,11 @@ extension UIViewController {
     }
 }
 
+extension UIViewController {
+    /// alert VC 를 띄우는 함수입니다.
+    func showAlert(title: String?, message: String?, actions: [UIAlertAction] = [UIAlertAction(title: "확인", style: .default)]) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        actions.forEach { alert.addAction($0) }
+        present(alert, animated: true)
+    }
+}
