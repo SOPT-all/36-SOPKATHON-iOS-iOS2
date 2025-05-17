@@ -199,7 +199,7 @@ extension HomeViewController {
 
         switch sender {
         case allButton:
-            shipImageView.image = UIImage(named: "ship1")
+            shipImageView.image = UIImage(named: "ship5")
 
         case accessoriesButton:
             shipImageView.image = UIImage(named: "ship2")
