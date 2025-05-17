@@ -37,3 +37,13 @@ extension UIView {
         layer.borderColor = borderColor.cgColor
     }
 }
+
+/// alert를 설정하는 함수입니다
+extension UIViewController {
+    func showAlert(title: String?, message: String?, actions: [UIAlertAction] = [UIAlertAction(title: "확인", style: .default)]) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        actions.forEach { alert.addAction($0) }
+        present(alert, animated: true)
+    }
+}
+
