@@ -1,5 +1,3 @@
-import SnapKit
-import Then
 //
 //  ReservationViewController.swift
 //  SOPKATHON36
@@ -8,7 +6,55 @@ import Then
 //
 import UIKit
 
+import SnapKit
+import Then
+
 class ReservationViewController: UIViewController, UITextFieldDelegate {
+    
+    let scrollView = UIScrollView().then{
+        $0.showsVerticalScrollIndicator = false
+    }
+    
+    let contentView = UIView()
+    
+    let classLabel = UILabel().then {
+        $0.attributedText = .pretendard(.title_sb_24, text: "원데이 클래스")
+        $0.textColor = .grayScale800
+    }
+    let shopLabel = UILabel().then {
+        $0.attributedText = .pretendard(.title_m_16, text: "매장 이름")
+        $0.textColor = .grayScale600
+    }
+    
+    let spotImageView = UIImageView().then {
+        $0.image = UIImage(named: "spot")
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    let spotLabel = UILabel().then {
+        $0.attributedText = .pretendard(.body_r_14, text: "주소를 입력해주세요.")
+        $0.textColor = .grayScale600
+    }
+    
+    let timeLabel = UILabel().then {
+        $0.attributedText = .pretendard(.body_r_14, text: "영업시간을 입력해주세요.")
+        $0.textColor = .grayScale600
+    }
+    
+    let callLabel = UILabel().then {
+        $0.attributedText = .pretendard(.body_r_14, text: "전화번호를 입력해주세요.")
+        $0.textColor = .grayScale600
+    }
+    
+    let timeImageView = UIImageView().then {
+        $0.image = UIImage(named: "time")
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    let callImageView = UIImageView().then {
+        $0.image = UIImage(named: "call")
+        $0.contentMode = .scaleAspectFit
+    }
 
     let personLabel = UILabel().then {
         $0.attributedText = .pretendard(.title_sb_16, text: "인원 선택")
@@ -19,7 +65,6 @@ class ReservationViewController: UIViewController, UITextFieldDelegate {
         $0.layer.cornerRadius = 8
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.systemBlue.cgColor
-        $0.setTitleColor(.systemBlue, for: .normal)
         $0.backgroundColor = .grayScale200
     }
 
@@ -66,13 +111,21 @@ class ReservationViewController: UIViewController, UITextFieldDelegate {
         $0.borderStyle = .roundedRect
         $0.placeholder = "시간 선택"
     }
+    
+    let reserveButton = UIButton().then{
+        $0.setTitle("예약하기", for: .normal)
+        $0.layer.cornerRadius = 8
+        $0.layer.borderWidth = 1
+        $0.setTitleColor(.white, for: .normal)
+        $0.backgroundColor = .brand1
+    }
 
     let datepicker = UIDatePicker()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-
+        setupScrollView()
         setLayout()
 
         DateTxt.delegate = self
@@ -117,15 +170,78 @@ class ReservationViewController: UIViewController, UITextFieldDelegate {
             view.endEditing(true)
         }
     }
+    private func setupScrollView() {
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        scrollView.addSubview(contentView)
+    }
 
     private func setLayout() {
-        [personLabel, personButton1, personButton2, personButton3,
-            DateLabel, DateTxt, TimeLabel, TimeTxt].forEach {
-            view.addSubview($0)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        [classLabel, shopLabel, spotImageView,timeImageView,callImageView,
+         spotLabel, timeLabel, callLabel,personLabel, personButton1,
+         personButton2, personButton3, DateLabel, DateTxt, TimeLabel, TimeTxt, reserveButton].forEach {
+            self.contentView.addSubview($0)
+        }
+        
+        scrollView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+
+        contentView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+            $0.width.equalToSuperview()
+        }
+        
+        classLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(350)
+            $0.leading.equalToSuperview().inset(16)
+        }
+        
+        shopLabel.snp.makeConstraints {
+            $0.top.equalTo(classLabel.snp.bottom).offset(15)
+            $0.leading.equalToSuperview().inset(16)
+        }
+        
+        spotImageView.snp.makeConstraints {
+            $0.top.equalTo(shopLabel.snp.bottom).offset(20)
+            $0.leading.equalToSuperview().inset(16)
+            $0.width.height.equalTo(20)
+        }
+        
+        spotLabel.snp.makeConstraints{
+            $0.centerY.equalTo(spotImageView.snp.centerY)
+            $0.leading.equalTo(spotImageView.snp.trailing).offset(15)
+        }
+        
+        timeImageView.snp.makeConstraints {
+            $0.top.equalTo(spotImageView.snp.bottom).offset(20)
+            $0.leading.equalToSuperview().inset(16)
+            $0.width.height.equalTo(20)
+        }
+        
+        timeLabel.snp.makeConstraints{
+            $0.centerY.equalTo(timeImageView.snp.centerY)
+            $0.leading.equalTo(timeImageView.snp.trailing).offset(15)
+        }
+        
+        callImageView.snp.makeConstraints {
+            $0.top.equalTo(timeImageView.snp.bottom).offset(20)
+            $0.leading.equalToSuperview().inset(16)
+            $0.width.height.equalTo(20)
+        }
+        
+        callLabel.snp.makeConstraints{
+            $0.centerY.equalTo(callImageView.snp.centerY)
+            $0.leading.equalTo(callImageView.snp.trailing).offset(15)
         }
         
         personLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(100)
+            $0.top.equalTo(callImageView.snp.bottom).offset(30)
             $0.leading.equalToSuperview().inset(16)
         }
         
@@ -152,7 +268,7 @@ class ReservationViewController: UIViewController, UITextFieldDelegate {
         
         
         DateLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(170)
+            $0.top.equalTo(personButton1.snp.bottom).offset(30)
             $0.leading.equalToSuperview().inset(16)
         }
 
@@ -173,6 +289,15 @@ class ReservationViewController: UIViewController, UITextFieldDelegate {
             $0.leading.equalToSuperview().inset(16)
             $0.width.height.equalTo(DateTxt)
         }
+        
+        reserveButton.snp.makeConstraints {
+            $0.top.equalTo(TimeTxt.snp.bottom).offset(40)
+            $0.leading.equalToSuperview().inset(16)
+            $0.width.equalTo(343)
+            $0.height.equalTo(52)
+            $0.bottom.equalToSuperview().inset(50)
+        }
+        
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
