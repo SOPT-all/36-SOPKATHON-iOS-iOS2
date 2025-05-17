@@ -11,6 +11,13 @@ import SnapKit
 import Then
 
 class DateTestViewController: UIViewController, UITextFieldDelegate {
+
+    let personLabel = UILabel().then {
+        $0.text = "인원 선택"
+        $0.font = .systemFont(ofSize: 16, weight: .semibold)
+        $0.textColor = .black
+    }
+    
     let DateTxt = UITextField().then {
         $0.textAlignment = .center
         $0.font = .systemFont(ofSize: 14)
