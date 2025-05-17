@@ -65,7 +65,7 @@ extension ReservationListViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 88  
+        return 100
     }
 
 }
