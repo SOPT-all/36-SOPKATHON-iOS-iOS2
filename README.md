@@ -32,3 +32,9 @@
 ### After
 <img src="https://github.com/user-attachments/assets/6366d001-066f-41d1-bce2-49aa89f51dea" width="500">
 
+## 👍🏻 시연 영상
+![Simulator Screen Recording - iPhone 13 mini - 2025-05-18 at 08 16 48](https://github.com/user-attachments/assets/9228f618-c4ee-438a-9146-f7e6ce24a070)
+
+
+
+
