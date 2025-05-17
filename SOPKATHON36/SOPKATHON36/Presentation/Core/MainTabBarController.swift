@@ -11,18 +11,21 @@ import Then
 
 final class MainTabBarController: UITabBarController {
     
+    
     // MARK: - Property
+    
+    var isLoginScreenPresented = true // 나중에 false로 설정
     
     // homeViewController
     let homeViewController: HomeViewController = HomeViewController().then {
         $0.tabBarItem.title = "홈"
-        $0.tabBarItem.image = UIImage(systemName: "heart")
+        $0.tabBarItem.image = .home
     }
     
     // reservationListViewController
     let reservationListViewController: ReservationListViewController = ReservationListViewController().then {
         $0.tabBarItem.title = "예약내역"
-        $0.tabBarItem.image = UIImage(systemName: "heart")
+        $0.tabBarItem.image = .reserve
     }
     
     // MARK: - LifeCycle
@@ -33,12 +36,26 @@ final class MainTabBarController: UITabBarController {
         setTabBar()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if !isLoginScreenPresented {
+            let loginViewController = LoginViewController()
+            
+            let nav = UINavigationController(rootViewController: loginViewController)
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true, completion: nil)
+
+            self.isLoginScreenPresented.toggle()
+        }
+    }
+    
     // MARK: - Functions
     
     private func setTabBar() {
-        tabBar.unselectedItemTintColor = .grayScale999
-        tabBar.tintColor = .grayScale600
-        tabBar.backgroundColor = .white
+        tabBar.unselectedItemTintColor = .grayScale400
+        tabBar.tintColor = .grayScale900
+        tabBar.backgroundColor = .grayScale000
         tabBar.isTranslucent = false
         
         let tabBarAppearance = UITabBarAppearance()
