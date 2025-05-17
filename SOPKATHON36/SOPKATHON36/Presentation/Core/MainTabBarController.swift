@@ -23,7 +23,7 @@ final class MainTabBarController: UITabBarController {
     }
     
     // reservationListViewController
-    let reservationListViewController: ReservationListViewController = ReservationListViewController().then {
+    let reservationListViewController: ReservationCompleteViewController = ReservationCompleteViewController().then {
         $0.tabBarItem.title = "예약내역"
         $0.tabBarItem.image = .reserve
     }
