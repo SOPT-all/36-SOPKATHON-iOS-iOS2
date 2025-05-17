@@ -39,6 +39,9 @@ class ReservationViewController: UIViewController, UITextFieldDelegate {
     let mainImageView = UIImageView().then {
         $0.backgroundColor = .red
         $0.isUserInteractionEnabled = true
+        $0.image = .img11
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
     }
     
     let backButton = UIButton().then {
@@ -46,12 +49,12 @@ class ReservationViewController: UIViewController, UITextFieldDelegate {
     }
     
     let classLabel = UILabel().then {
-        $0.attributedText = .pretendard(.title_sb_24, text: "원데이 클래스")
+        $0.attributedText = .pretendard(.title_sb_24, text: "폐 로프 바구니")
         $0.textColor = .grayScale800
     }
     
     let shopLabel = UILabel().then {
-        $0.attributedText = .pretendard(.title_m_16, text: "매장 이름")
+        $0.attributedText = .pretendard(.title_m_16, text: "업장명1")
         $0.textColor = .grayScale600
     }
     

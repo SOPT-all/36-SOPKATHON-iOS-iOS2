@@ -20,20 +20,22 @@ class ReservationListTableViewCell: UITableViewCell, ReuseIdentifiable {
     }
 
     private let logoImageView = UIImageView().then {
-        $0.image = UIImage(named: "logo1")
-        $0.contentMode = .scaleAspectFit
+        $0.image = .img11
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+        $0.setCornerRadius(8)
         
 //        $0.backgroundColor = .red
     }
 
     private let titleLabel = UILabel().then {
-        $0.attributedText = .pretendard(.title_sb_16, text: "작업장 1")
+        $0.attributedText = .pretendard(.title_sb_16, text: "폐 로프 바구니")
         $0.textColor = .black
         
     }
     
     private let subTitleLabel = UILabel().then {
-        $0.attributedText = .pretendard(.label_r_12, text: "업체명")
+        $0.attributedText = .pretendard(.label_r_12, text: "업체명1")
         $0.textColor = .lightGray
     }
 

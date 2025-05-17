@@ -15,7 +15,7 @@ class ReservationCompleteViewController: UIViewController {
     }
     
     private let onedayLabel = UIButton().then {
-        $0.setTitle("원데이 클래스 이름", for: .normal)
+        $0.setTitle("폐 로프 바구니", for: .normal)
         $0.titleLabel?.font = .pretendard(size: 14)
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = .brand1

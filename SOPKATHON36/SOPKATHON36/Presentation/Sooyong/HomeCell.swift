@@ -63,18 +63,19 @@ class HomeCell: UITableViewCell, ReuseIdentifiable {
         
         mainImageView.do {
             $0.setCornerRadius(8)
+            $0.image = .img11
             $0.backgroundColor = .grayScale200
             $0.contentMode = .scaleAspectFill
             $0.clipsToBounds = true
         }
         
         titleLabel.do {
-            $0.attributedText = .pretendard(.title_m_14, text: "원데이클래스 이름")
+            $0.attributedText = .pretendard(.title_m_14, text: "폐 로프 바구니")
             $0.textColor = .grayScale800
         }
         
         subTitleLabel.do {
-            $0.attributedText = .pretendard(.label_r_12, text: "원데이 클래스 설명")
+            $0.attributedText = .pretendard(.label_r_12, text: "수납 가능한 감성 로프 바구니 만들기")
             $0.textColor = .grayScale600
         }
         

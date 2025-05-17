@@ -26,7 +26,7 @@ class ReservationListViewController: UIViewController {
     }
 
     private let doLabel = UILabel().then {
-        $0.attributedText = .pretendard(.title_m_14, text: "총 2번의 UP사이클링을 실천했어요!")
+        $0.attributedText = .pretendard(.title_m_14, text: "총 1번의 UP사이클링을 실천했어요!")
         $0.textColor = .black
     }
 
@@ -97,7 +97,7 @@ class ReservationListViewController: UIViewController {
 
 extension ReservationListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 30
+        return 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
