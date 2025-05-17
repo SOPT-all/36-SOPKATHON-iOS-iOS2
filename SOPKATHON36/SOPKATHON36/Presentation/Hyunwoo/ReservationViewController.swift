@@ -11,6 +11,8 @@ import Then
 
 class ReservationViewController: UIViewController, UITextFieldDelegate {
     
+    private var filterButton : [UIButton] = []
+    
     let scrollView = UIScrollView().then{
         $0.showsVerticalScrollIndicator = false
     }
@@ -21,6 +23,7 @@ class ReservationViewController: UIViewController, UITextFieldDelegate {
         $0.attributedText = .pretendard(.title_sb_24, text: "원데이 클래스")
         $0.textColor = .grayScale800
     }
+    
     let shopLabel = UILabel().then {
         $0.attributedText = .pretendard(.title_m_16, text: "매장 이름")
         $0.textColor = .grayScale600
@@ -55,59 +58,59 @@ class ReservationViewController: UIViewController, UITextFieldDelegate {
         $0.image = UIImage(named: "call")
         $0.contentMode = .scaleAspectFit
     }
-
+    
     let personLabel = UILabel().then {
         $0.attributedText = .pretendard(.title_sb_16, text: "인원 선택")
         $0.textColor = .grayScale999
     }
+    
     let personButton1 = UIButton(type: .system).then {
-        $0.setTitle("1명", for: .normal)
-        $0.layer.cornerRadius = 8
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.systemBlue.cgColor
+        $0.setTitle("1", for: .normal)
+        $0.layer.cornerRadius = 4
+        $0.setTitleColor(.grayScale600, for: .normal)
         $0.backgroundColor = .grayScale200
+        $0.tag = 1
+        
     }
-
+    
     let personButton2 = UIButton(type: .system).then {
-        $0.setTitle("2명", for: .normal)
-        $0.layer.cornerRadius = 8
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.systemBlue.cgColor
-        $0.setTitleColor(.systemBlue, for: .normal)
+        $0.setTitle("2", for: .normal)
+        $0.layer.cornerRadius = 4
+        $0.setTitleColor(.grayScale600, for: .normal)
         $0.backgroundColor = .grayScale200
+        $0.tag = 2
     }
-
+    
     let personButton3 = UIButton(type: .system).then {
-        $0.setTitle("3명", for: .normal)
-        $0.layer.cornerRadius = 8
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.systemBlue.cgColor
-        $0.setTitleColor(.systemBlue, for: .normal)
+        $0.setTitle("3", for: .normal)
+        $0.layer.cornerRadius = 4
+        $0.setTitleColor(.grayScale600, for: .normal)
         $0.backgroundColor = .grayScale200
+        $0.tag = 3
     }
-
+    
     let DateLabel = UILabel().then {
         $0.attributedText = .pretendard(.title_sb_16, text: "날짜 선택")
         $0.textColor = .grayScale999
     }
-
+    
     let DateTxt = UITextField().then {
         $0.textAlignment = .center
         $0.font = .systemFont(ofSize: 14)
-        $0.backgroundColor = .grayScale300
+        $0.backgroundColor = .grayScale200
         $0.borderStyle = .roundedRect
         $0.placeholder = "날짜 선택"
     }
-
+    
     let TimeLabel = UILabel().then {
         $0.attributedText = .pretendard(.title_sb_16, text: "시간 선택")
         $0.textColor = .grayScale999
     }
-
+    
     let TimeTxt = UITextField().then {
         $0.textAlignment = .center
         $0.font = .systemFont(ofSize: 14)
-        $0.backgroundColor = .grayScale300
+        $0.backgroundColor = .grayScale200
         $0.borderStyle = .roundedRect
         $0.placeholder = "시간 선택"
     }
@@ -119,54 +122,60 @@ class ReservationViewController: UIViewController, UITextFieldDelegate {
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = .brand1
     }
-
+    
     let datepicker = UIDatePicker()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupScrollView()
         setLayout()
-
+        setFilterButton()
+        
         DateTxt.delegate = self
         TimeTxt.delegate = self
-
+        
         datepicker.locale = Locale(identifier: "ko-KR")
         datepicker.preferredDatePickerStyle = .inline
-
+        
         navigationController?.navigationBar.isHidden = true
+        
+        personButton1.addTarget(self, action: #selector(filterButtonDidTap), for: .touchUpInside)
+        personButton2.addTarget(self, action: #selector(filterButtonDidTap), for: .touchUpInside)
+        personButton3.addTarget(self, action: #selector(filterButtonDidTap), for: .touchUpInside)
     }
-
+    
     func createDatePicker(mode: UIDatePicker.Mode, inputField: UITextField) {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-
+        
         let doneButton = UIBarButtonItem(
             barButtonSystemItem: .done,
             target: self,
             action: #selector(donePressed)
         )
         toolbar.setItems([doneButton], animated: true)
-
+        
         inputField.inputView = datepicker
         inputField.inputAccessoryView = toolbar
-
+        
         datepicker.datePickerMode = mode
     }
-
+    
     @objc func donePressed() {
         let formatter = DateFormatter()
-
+        
         if DateTxt.isFirstResponder {
-
+            
             formatter.dateStyle = .medium
             formatter.timeStyle = .none
             DateTxt.text = formatter.string(from: datepicker.date)
             DateTxt.resignFirstResponder()
         } else if TimeTxt.isFirstResponder {
-
+            
             formatter.dateFormat = "HH:mm"
             TimeTxt.text = formatter.string(from: datepicker.date)
+            TimeTxt.textColor = .brand1
             view.endEditing(true)
         }
     }
@@ -177,7 +186,7 @@ class ReservationViewController: UIViewController, UITextFieldDelegate {
         }
         scrollView.addSubview(contentView)
     }
-
+    
     private func setLayout() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -191,7 +200,7 @@ class ReservationViewController: UIViewController, UITextFieldDelegate {
         scrollView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
-
+        
         contentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
             $0.width.equalToSuperview()
@@ -271,19 +280,19 @@ class ReservationViewController: UIViewController, UITextFieldDelegate {
             $0.top.equalTo(personButton1.snp.bottom).offset(30)
             $0.leading.equalToSuperview().inset(16)
         }
-
+        
         DateTxt.snp.makeConstraints {
             $0.top.equalTo(DateLabel.snp.bottom).offset(10)
             $0.leading.equalToSuperview().inset(16)
             $0.width.equalTo(343)
             $0.height.equalTo(44)
         }
-
+        
         TimeLabel.snp.makeConstraints {
             $0.top.equalTo(DateTxt.snp.bottom).offset(25)
             $0.leading.equalToSuperview().inset(16)
         }
-
+        
         TimeTxt.snp.makeConstraints {
             $0.top.equalTo(TimeLabel.snp.bottom).offset(10)
             $0.leading.equalToSuperview().inset(16)
@@ -299,16 +308,38 @@ class ReservationViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
-
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == DateTxt {
-
+            
             datepicker.preferredDatePickerStyle = .inline
             createDatePicker(mode: .date, inputField: DateTxt)
         } else if textField == TimeTxt {
-
+            
             datepicker.preferredDatePickerStyle = .wheels
             createDatePicker(mode: .time, inputField: TimeTxt)
+        }
+    }
+    
+    
+    @objc
+    private func filterButtonDidTap(_ sender: UIButton) {
+        for button in filterButton {
+            let isSelected = (button == sender)
+            button.isSelected = isSelected
+            
+            if(isSelected) {
+                button.backgroundColor = .brand1
+            } else {
+                button.backgroundColor = .grayScale200
+            }
+        }
+    }
+    
+    @objc
+    private func setFilterButton() {
+        [personButton1, personButton2, personButton3].forEach { button in
+            filterButton.append(button)
         }
     }
 }
