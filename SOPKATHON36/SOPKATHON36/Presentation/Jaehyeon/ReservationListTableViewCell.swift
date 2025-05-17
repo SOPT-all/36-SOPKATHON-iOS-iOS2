@@ -13,15 +13,17 @@ import Then
 class ReservationListTableViewCell: UITableViewCell, ReuseIdentifiable {
     
     private let contentContainerView = UIView().then {
-        $0.backgroundColor = .yellow
+        $0.backgroundColor = .grayScale050
         $0.layer.masksToBounds = true
+        $0.setCornerRadius(8)
         
     }
 
     private let logoImageView = UIImageView().then {
-        $0.image = UIImage(systemName: "pencil")
+        $0.image = UIImage(named: "logo1")
         $0.contentMode = .scaleAspectFit
-        $0.backgroundColor = .red
+        
+//        $0.backgroundColor = .red
     }
 
     private let titleLabel = UILabel().then {
@@ -29,18 +31,18 @@ class ReservationListTableViewCell: UITableViewCell, ReuseIdentifiable {
         $0.textColor = .black
         
     }
-
-    private let dateLabel = UILabel().then {
-        $0.attributedText = .pretendard(.label_r_12, text: "2025.05.18")
-        $0.textColor = .black
-        $0.backgroundColor = .lightGray
+    
+    private let subTitleLabel = UILabel().then {
+        $0.attributedText = .pretendard(.label_r_12, text: "업체명")
+        $0.textColor = .lightGray
     }
 
-    private let timeLabel = UILabel().then {
-        $0.attributedText = .pretendard(.label_r_12, text: "오전 12시")
-        $0.textColor = .black
-        $0.backgroundColor = .lightGray
+    private let dateAndTimeLabel = UILabel().then {
+        $0.attributedText = .pretendard(.label_r_12, text: "2025.05.18/ 00:00")
+        $0.textColor = .lightGray
     }
+
+   
 
     // MARK: - Init
 
@@ -67,7 +69,7 @@ class ReservationListTableViewCell: UITableViewCell, ReuseIdentifiable {
             $0.bottom.equalToSuperview().inset(4)
         }
 
-        contentContainerView.addSubviews(logoImageView, titleLabel, dateLabel, timeLabel)
+        contentContainerView.addSubviews(logoImageView, titleLabel, dateAndTimeLabel, subTitleLabel)
 
         logoImageView.snp.makeConstraints {
             $0.size.equalTo(64)
@@ -79,15 +81,17 @@ class ReservationListTableViewCell: UITableViewCell, ReuseIdentifiable {
             $0.leading.equalTo(logoImageView.snp.trailing).offset(12)
             $0.top.equalTo(logoImageView.snp.top).offset(4)
         }
-
-        dateLabel.snp.makeConstraints {
-            $0.leading.equalTo(titleLabel.snp.leading)
-            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+        
+        subTitleLabel.snp.makeConstraints {
+            $0.leading.equalTo(titleLabel)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
         }
 
-        timeLabel.snp.makeConstraints {
-            $0.leading.equalTo(dateLabel.snp.trailing).offset(12)
-            $0.centerY.equalTo(dateLabel)
+        dateAndTimeLabel.snp.makeConstraints {
+            $0.leading.equalTo(subTitleLabel.snp.leading)
+            $0.top.equalTo(subTitleLabel.snp.bottom).offset(4)
         }
+
+       
     }
 }
