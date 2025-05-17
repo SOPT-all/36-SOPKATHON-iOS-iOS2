@@ -18,7 +18,7 @@ final class MainTabBarController: UITabBarController {
     
     // homeViewController
 
-    let homeViewController: ReservationCompleteViewController = ReservationCompleteViewController().then {
+    let homeViewController: HomeViewController = HomeViewController().then {
 
         $0.tabBarItem.title = "홈"
         $0.tabBarItem.image = .home
