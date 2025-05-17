@@ -14,7 +14,7 @@ final class MainTabBarController: UITabBarController {
     
     // MARK: - Property
     
-    var isLoginScreenPresented = true // 나중에 false로 설정
+    var isLoginScreenPresented = false // 나중에 false로 설정
     
     // homeViewController
 

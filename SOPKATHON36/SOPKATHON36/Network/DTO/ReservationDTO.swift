@@ -12,5 +12,5 @@ struct ReservationRequestDTO: Codable {
 }
 
 struct ReservationResponseDTO: Codable {
-    let number_of_people: Int
+    let numberOfPeople: Int
 }

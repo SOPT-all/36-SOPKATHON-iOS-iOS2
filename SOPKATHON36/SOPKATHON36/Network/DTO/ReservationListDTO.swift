@@ -12,7 +12,7 @@ struct ReservationListRequestDTO: Codable {
 }
 
 
-struct ReservationDTO: Codable {
+struct ReservationListResponseDTO: Codable {
     let reservations: [Reservation]
 }
 
