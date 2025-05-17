@@ -43,7 +43,7 @@ class ReservationCompleteViewController: UIViewController {
     
     
     private let dateLabel = UIButton().then {
-        $0.setTitle("2025년 12월 18일", for: .normal)
+        $0.setTitle("2025년 6월 14일", for: .normal)
         $0.titleLabel?.font = .pretendard(size: 14)
         $0.setTitleColor(.grayScale600, for: .normal)
         $0.backgroundColor = .grayScale200
@@ -52,7 +52,7 @@ class ReservationCompleteViewController: UIViewController {
         }
     
     private let timeLabel = UIButton().then {
-        $0.setTitle("04시 52분", for: .normal)
+        $0.setTitle("15시 30분", for: .normal)
         $0.titleLabel?.font = .pretendard(size: 14)
         $0.setTitleColor(.grayScale600, for: .normal)
         $0.backgroundColor = .grayScale200
