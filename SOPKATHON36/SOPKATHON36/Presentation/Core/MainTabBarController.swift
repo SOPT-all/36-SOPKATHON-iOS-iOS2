@@ -17,7 +17,9 @@ final class MainTabBarController: UITabBarController {
     var isLoginScreenPresented = true // 나중에 false로 설정
     
     // homeViewController
-    let homeViewController: ReservationListViewController = ReservationListViewController().then {
+
+    let homeViewController: ReservationViewController = ReservationViewController().then {
+
         $0.tabBarItem.title = "홈"
         $0.tabBarItem.image = .home
     }
