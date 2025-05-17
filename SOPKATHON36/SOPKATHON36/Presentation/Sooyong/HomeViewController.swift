@@ -74,7 +74,7 @@ class HomeViewController: UIViewController {
         }
         
         upCycleLabel.do {
-            $0.attributedText = .pretendard(.title_b_24, text: "UP사이클 해볼까요?")
+            $0.attributedText = .pretendard(.title_b_24, text: "오늘은 어떤 UP사이클을 할까요?")
         }
         
         shipImageView.do {
@@ -236,6 +236,8 @@ extension HomeViewController: UITableViewDelegate {
 
 extension HomeViewController: HomeCellDelegate {
     func leftButtonDidTap() {
-        print("ViewController - homeCell 버튼 눌림")
+        let viewController = ReservationViewController()
+        viewController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
