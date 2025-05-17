@@ -17,13 +17,15 @@ final class MainTabBarController: UITabBarController {
     var isLoginScreenPresented = true // 나중에 false로 설정
     
     // homeViewController
-    let homeViewController: HomeViewController = HomeViewController().then {
+
+    let homeViewController: ReservationListViewController = ReservationListViewController().then {
+
         $0.tabBarItem.title = "홈"
         $0.tabBarItem.image = .home
     }
     
     // reservationListViewController
-    let reservationListViewController: ReservationListViewController = ReservationListViewController().then {
+    let reservationListViewController: ReservationCompleteViewController = ReservationCompleteViewController().then {
         $0.tabBarItem.title = "예약내역"
         $0.tabBarItem.image = .reserve
     }
