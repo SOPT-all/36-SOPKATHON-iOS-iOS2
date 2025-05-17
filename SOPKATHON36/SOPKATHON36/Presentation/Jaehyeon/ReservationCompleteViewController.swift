@@ -12,7 +12,6 @@ class ReservationCompleteViewController: UIViewController {
     private let logoImageView = UIImageView().then {
         $0.image = UIImage(systemName: "pencil")
         $0.contentMode = .scaleAspectFit
-        $0.backgroundColor = .red
     }
     
     private let titleLabel = UILabel().then {
