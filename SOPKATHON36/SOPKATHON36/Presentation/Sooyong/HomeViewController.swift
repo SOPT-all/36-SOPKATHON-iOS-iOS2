@@ -196,7 +196,25 @@ extension HomeViewController {
             let isSelected = (button == sender)
             button.isSelected = isSelected
         }
+
+        switch sender {
+        case allButton:
+            shipImageView.image = UIImage(named: "ship1")
+
+        case accessoriesButton:
+            shipImageView.image = UIImage(named: "ship2")
+
+        case lifeButton:
+            shipImageView.image = UIImage(named: "ship3")
+
+        case goodsButton:
+            shipImageView.image = UIImage(named: "ship4")
+
+        default:
+            break
+        }
     }
+
     
     private func setFilterButtons() {
         [allButton, accessoriesButton, lifeButton, goodsButton].forEach { button in
