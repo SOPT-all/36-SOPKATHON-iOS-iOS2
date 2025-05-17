@@ -38,6 +38,7 @@ class ReservationViewController: UIViewController, UITextFieldDelegate {
     
     let mainImageView = UIImageView().then {
         $0.backgroundColor = .red
+        $0.isUserInteractionEnabled = true
     }
     
     let backButton = UIButton().then {
@@ -223,11 +224,8 @@ class ReservationViewController: UIViewController, UITextFieldDelegate {
     
     @objc
     private func backButtonDidTap() {
-        if self.navigationController == nil {
-            self.dismiss(animated: true)
-        } else {
-            self.navigationController?.popViewController(animated: true)
-        }
+        print("Asdf")
+        self.navigationController?.popViewController(animated: true)
     }
 
     private func setupScrollView() {
@@ -250,8 +248,8 @@ class ReservationViewController: UIViewController, UITextFieldDelegate {
         mainImageView.addSubviews(backButton)
         
         scrollView.snp.makeConstraints {
-            $0.bottom.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
-            $0.top.equalToSuperview()
+            $0.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.top.equalToSuperview()
         }
         
         contentView.snp.makeConstraints {
@@ -265,8 +263,9 @@ class ReservationViewController: UIViewController, UITextFieldDelegate {
         }
         
         backButton.snp.makeConstraints {
-            $0.leading.equalTo(mainImageView.snp.leading).inset(10)
-            $0.top.equalTo(mainImageView.snp.top).inset(56)
+            $0.leading.equalTo(view.snp.leading).inset(10)
+            $0.top.equalTo(view.snp.top).inset(62)
+            $0.size.equalTo(24)
         }
         
         classLabel.snp.makeConstraints {
@@ -415,7 +414,8 @@ class ReservationViewController: UIViewController, UITextFieldDelegate {
     
     @objc
     private func reservationButtonDidTap() {
-        print(#function)
+        let viewController = ReservationCompleteViewController()
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     private func activeReservation() {

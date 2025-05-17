@@ -73,8 +73,10 @@ class ReservationCompleteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .grayScale000
         setupUI()
 
+        returnButton.addTarget(self, action: #selector(completeButtonDidTap), for: .touchUpInside)
     }
     
     private func setupUI() {
@@ -125,4 +127,11 @@ class ReservationCompleteViewController: UIViewController {
     
     }
 
+}
+
+extension ReservationCompleteViewController {
+    @objc
+    private func completeButtonDidTap() {
+        navigationController?.popToRootViewController(animated: true)
+    }
 }
