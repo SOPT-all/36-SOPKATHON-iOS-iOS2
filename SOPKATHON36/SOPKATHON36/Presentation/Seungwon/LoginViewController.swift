@@ -41,7 +41,8 @@ class LoginViewController: UIViewController {
         }
         
         logoImageView.do {
-            $0.image = .logo1
+            $0.image = .splash
+            $0.contentMode = .scaleAspectFit
         }
         
         loginTextField.do {
@@ -53,14 +54,15 @@ class LoginViewController: UIViewController {
             $0.setBorder(borderColor: .grayScale000)
             $0.setPlaceholderColor(.brand3)
             $0.keyboardType = .numberPad
-            $0.attributedText = .pretendard(.title_m_14, text: "")
+            $0.font = .pretendard(.title_m_14)
             $0.textColor = .grayScale000
         }
         
         loginButton.do {
             $0.setTitle("로그인", for: .normal)
+            $0.titleLabel?.attributedText = .pretendard(.title_sb_16, text: "로그인")
             $0.setTitleColor(.brand1, for: .normal)
-            $0.setTitleColor(.grayScale000, for: .disabled)
+            $0.setTitleColor(.brand3, for: .disabled)
             $0.backgroundColor = .brand2
             $0.isEnabled = false
             $0.setCornerRadius(8)

@@ -11,12 +11,12 @@ struct CoursesRequestDTO: Codable {
     let phoneNumber: String
 }
 
-struct CoursesDTO {
+struct CoursesResponseDTO: Codable {
     let courses: [Course]
 }
 
 struct Course: Codable {
     let id: Int
     let image: String
-    let productName, description, ingredient: String
+    let title, description, ingredient: String
 }

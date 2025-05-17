@@ -78,8 +78,8 @@ class HomeViewController: UIViewController {
         }
         
         shipImageView.do {
+            $0.image = .ship1 // 기본이 1
             $0.contentMode = .scaleAspectFit
-            $0.backgroundColor = .red
         }
         
         separatorView.do {
