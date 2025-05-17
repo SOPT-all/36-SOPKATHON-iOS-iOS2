@@ -14,19 +14,26 @@ final class MainTabBarController: UITabBarController {
     
     // MARK: - Property
     
-    var number: String = ""
+    var number: String = "" {
+        didSet {
+            print("넘겨받음\(number)")
+            
+            homeViewController.number = number
+            reservationListViewController.number = number
+        }
+    }
     
     
     // homeViewController
 
-    let homeViewController: HomeViewController = HomeViewController().then {
+    lazy var homeViewController: HomeViewController = HomeViewController().then {
 
         $0.tabBarItem.title = "홈"
         $0.tabBarItem.image = .home
     }
     
     // reservationListViewController
-    let reservationListViewController: ReservationListViewController = ReservationListViewController().then {
+    lazy var reservationListViewController: ReservationListViewController = ReservationListViewController().then {
         $0.tabBarItem.title = "예약내역"
         $0.tabBarItem.image = .reserve
     }
@@ -37,7 +44,7 @@ final class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         
         setTabBar()
-        homeViewController.number = number
+//        homeViewController.number = number
         reservationListViewController.number = number
     }
     
