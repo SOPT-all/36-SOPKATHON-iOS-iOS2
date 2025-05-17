@@ -20,7 +20,10 @@ class OnboardingViewController: UIViewController {
     
     private let titleLabel = UILabel()
     
+    var number: String = ""
+    
     // MARK: - Life Cycle
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +33,9 @@ class OnboardingViewController: UIViewController {
         setLayout()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.dismiss(animated: true)
+            let vc = MainTabBarController()
+            vc.number = self.number
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -51,7 +56,7 @@ class OnboardingViewController: UIViewController {
         numberLabel.do {
             $0.backgroundColor = .brand4
             $0.textColor = .brand1
-            $0.attributedText = .pretendard(.title_m_14, text: "9427님")
+            $0.attributedText = .pretendard(.title_m_14, text: "\(number.suffix(4))님")
             $0.textAlignment = .center
             $0.setCornerRadius(8)
         }

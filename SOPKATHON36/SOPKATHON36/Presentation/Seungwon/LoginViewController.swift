@@ -115,6 +115,7 @@ extension LoginViewController {
         }
         
         let viewControler = OnboardingViewController()
+        viewControler.number = phoneNumber
         navigationController?.pushViewController(viewControler, animated: true)
     }
 }

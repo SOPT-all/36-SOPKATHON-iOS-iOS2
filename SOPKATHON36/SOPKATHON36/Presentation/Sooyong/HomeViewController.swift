@@ -16,6 +16,8 @@ class HomeViewController: UIViewController {
     
     private var filterButtons: [FilterButton] = []
     
+    var number: String = ""
+    
     // MARK: - UI Properties
     
     private let headerContainerView = UIView()
@@ -70,7 +72,7 @@ class HomeViewController: UIViewController {
         }
         
         nameLabel.do {
-            $0.attributedText = .pretendard(.title_b_24, text: "9427님")
+            $0.attributedText = .pretendard(.title_b_24, text: "\(number.suffix(4))님")
         }
         
         upCycleLabel.do {

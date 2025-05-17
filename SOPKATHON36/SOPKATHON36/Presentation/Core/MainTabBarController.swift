@@ -14,7 +14,8 @@ final class MainTabBarController: UITabBarController {
     
     // MARK: - Property
     
-    var isLoginScreenPresented = false // 나중에 false로 설정
+    var number: String = ""
+    
     
     // homeViewController
 
@@ -36,20 +37,8 @@ final class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         
         setTabBar()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if !isLoginScreenPresented {
-            let loginViewController = LoginViewController()
-            
-            let nav = UINavigationController(rootViewController: loginViewController)
-            nav.modalPresentationStyle = .fullScreen
-            self.present(nav, animated: true, completion: nil)
-
-            self.isLoginScreenPresented.toggle()
-        }
+        homeViewController.number = number
+        reservationListViewController.number = number
     }
     
     // MARK: - Functions

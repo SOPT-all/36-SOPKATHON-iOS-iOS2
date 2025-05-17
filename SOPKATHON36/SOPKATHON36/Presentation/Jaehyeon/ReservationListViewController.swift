@@ -13,6 +13,8 @@ import Then
 
 class ReservationListViewController: UIViewController {
     
+    var number: String = ""
+    
     private let titleLabel = UILabel().then {
         $0.attributedText = .pretendard(.title_b_24, text: "예약내역")
         $0.textColor = .black
