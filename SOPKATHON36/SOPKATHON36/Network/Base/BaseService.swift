@@ -154,11 +154,14 @@ extension BaseService {
     /// Header
     enum HeaderField {
         case contentTypeJSON
+        case phoneNumber(number: String)
         
         var keyValue: [String: String]? {
             switch self {
             case .contentTypeJSON:
                 return ["Content-Type": "application/json"]
+            case .phoneNumber(number: let number):
+                return ["Content-Type": "application/json", "phoneNumber": String(number)]
             }
         }
     }
