@@ -11,18 +11,18 @@ struct CoursesDetailRequestDTO: Codable {
     let phoneNumber: String
 }
 
-struct CoursesDetailDTO {
+struct CoursesDetailResponseDTO: Codable {
     let id: Int
     let shop: ShopList
     let schedules: [Schedule]
 }
 
-struct Schedule {
+struct Schedule: Codable {
     let id: Int
     let time: String
 }
 
-struct ShopList {
+struct ShopList: Codable {
     let id: Int
     let location, businessHour, phoneNumber: String
 }
